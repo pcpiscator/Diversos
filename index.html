@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <title>Pedra, Papel ou Tesoura</title>
+    <link rel="manifest" href="manifest.json">
+    <style>
+        /* Estilos para o botão */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+            text-align: center;
+        }
+        button {
+            background-color: #ff1b7b;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #1abc9c;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        footer {
+            position: fixed;
+            bottom: 10px;
+        }
+    </style>
+    <script>
+        function jogar() {
+            let escolhajogador = prompt("Digite 1 - Pedra, 2 - Papel ou 3 - Tesoura");
+            let escolhacomputador = Math.floor(Math.random() * 3) + 1;
+
+            // Empate
+            if (escolhajogador == escolhacomputador) {
+                alert("Deu empate!");
+                return;
+            }
+
+            // Jogador escolhe Pedra
+            if (escolhajogador == 1) {
+                if (escolhacomputador == 2) {
+                    alert("Computador venceu. Escolheu Papel");
+                } else {
+                    alert("Jogador venceu. Computador escolheu Tesoura");
+                }
+            }
+
+            // Jogador escolhe Papel
+            if (escolhajogador == 2) {
+                if (escolhacomputador == 1) {
+                    alert("Jogador venceu. Escolheu Papel");
+                } else {
+                    alert("Computador venceu. Escolheu Tesoura");
+                }
+            }
+
+            // Jogador escolhe Tesoura
+            if (escolhajogador == 3) {
+                if (escolhacomputador == 1) {
+                    alert("Computador venceu. Escolheu Pedra");
+                } else {
+                    alert("Jogador venceu. Computador escolheu Papel");
+                }
+            }
+
+            // Exibe a escolha do computador caso não haja empate
+            
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Escolha:</h2>
+        <p><strong>Pedra, Papel ou Tesoura?</strong></p>
+        <button onclick="jogar()"><strong>Bora jogar!</strong></button>
+    </div>
+    <footer></footer>
+
+    <script>
+        // Registra o Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('sw.js').then(function(registration) {
+                    console.log('Service Worker registrado com sucesso:', registration);
+                }).catch(function(error) {
+                    console.log('Registro do Service Worker falhou:', error);
+                });
+            });
+        }
+    </script>
+</body>
+</html>
